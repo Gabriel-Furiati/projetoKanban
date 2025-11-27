@@ -1,0 +1,19 @@
+{
+  "name": "proj_base_mariadb",
+  "version": "1.0.0",
+  "description": "Este projeto deve ser usado como ponto de partida para criar o projeto que você vai entregar para o professor.",
+  "main": "index.js",
+  "scripts": {
+    "setup-db": "node db/criarTabelas.js",
+    "dev": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mariadb": "^3.4.5"
+  }
+}
