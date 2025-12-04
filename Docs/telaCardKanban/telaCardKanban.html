@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Tarefa</title>
+    <style>
+        /* ESTILOS BASE */
+        :root { --primary: #4a90e2; --bg-body: #f4f6f8; --bg-card: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-body); margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        
+        /* CARD MODAL STYLE */
+        .card-detail { 
+            background: var(--bg-card); 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 100%; 
+            max-width: 500px;
+            border: 1px solid #e1e1e1;
+        }
+
+        .header-section { margin-bottom: 1.5rem; }
+        .header-section label { display: block; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: #333; }
+        .title-display { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            border-radius: 4px; 
+            background-color: #fafafa;
+            font-size: 1rem;
+        }
+
+        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        
+        .field-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #555; margin-bottom: 4px; }
+        .field-group div, .field-group select { width: 100%; padding: 8px; border-radius: 4px; box-sizing: border-box; }
+        .read-only { color: #666; font-size: 0.95rem; padding-left: 0 !important; }
+        
+        select { border: 1px solid #ccc; background-color: white; height: 38px; }
+
+        .actions { display: flex; gap: 15px; margin-top: 2rem; }
+        .btn { flex: 1; padding: 10px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.85rem; }
+        .btn-edit { background-color: white; border: 2px solid #ccc; color: #555; }
+        .btn-delete { background-color: white; border: 2px solid #e74c3c; color: #e74c3c; }
+        
+        .btn-edit:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-delete:hover { background-color: #e74c3c; color: white; }
+
+        /* Link simulando retorno */
+        .back-link { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <a href="kanban.html" class="back-link">← Voltar ao Board</a>
+
+    <div class="card-detail">
+        <div class="header-section">
+            <label>Titulo da Tarefa</label>
+            <div class="title-display">Conferir estoque de perecíveis</div>
+        </div>
+
+        <div class="grid-info">
+            <div class="field-group">
+                <label>id da tarefa</label>
+                <div class="read-only">000000</div>
+            </div>
+            <div class="field-group">
+                <label>Prioridade</label>
+                <select>
+                    <option>Normal</option>
+                    <option>Alta</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-info">
+            <div class="field-group">
+                <label>Aberto por</label>
+                <div class="read-only">José da Silva</div>
+            </div>
+            <div class="field-group">
+                <label>Responsável atual</label>
+                <select>
+                    <option>André Torres</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field-group" style="width: 50%;">
+            <label>Status</label>
+            <select>
+                <option>Em andamento</option>
+                <option>Pronto</option>
+            </select>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-edit">editar</button>
+            <button class="btn btn-delete">Excluir</button>
+        </div>
+    </div>
+
+</body>
+</html>
