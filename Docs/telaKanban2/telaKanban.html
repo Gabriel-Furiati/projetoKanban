@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Kanban</title>
+    <style>
+        /* ESTILOS GERAIS (Compartilhado) */
+        :root {
+            --primary: #4a90e2;
+            --bg-body: #f4f6f8;
+            --bg-card: #ffffff;
+            --text-dark: #333;
+            --text-light: #666;
+            --border: #ddd;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-body); margin: 0; color: var(--text-dark); }
+        
+        /* NAVBAR */
+        .navbar { background-color: var(--bg-card); padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .logo { font-weight: bold; font-size: 1.2rem; color: var(--text-dark); }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text-light); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        /* KANBAN LAYOUT */
+        .container { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+        .kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .column { background-color: #eef0f5; border-radius: 8px; padding: 1rem; min-height: 500px; }
+        .column-header { font-weight: bold; margin-bottom: 1rem; text-align: center; color: var(--text-dark); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        
+        /* CARDS */
+        .task-card { background: var(--bg-card); padding: 1rem; border-radius: 6px; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; border: 1px solid transparent; }
+        .task-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .task-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .task-meta { font-size: 0.8rem; color: var(--text-light); display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Board de tarefas</div>
+        <div class="nav-links">
+            <a href="kanban.html" class="active">Kanban</a>
+            <a href="novo_usuario.html">Novo usuário</a>
+            <a href="nova_tarefa.html">Nova Tarefa</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="kanban-board">
+            <div class="column">
+                <div class="column-header">A fazer</div>
+                <div class="task-card">
+                    <div class="task-title">Análise de Requisitos</div>
+                    <div class="task-meta"><span>#001</span> <span>Alta</span></div>
+                </div>
+                <div class="task-card">
+                    <div class="task-title">Criar Mockups</div>
+                    <div class="task-meta"><span>#002</span> <span>Média</span></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="column-header">Em andamento.</div>
+                <div class="task-card">
+                    <div class="task-title">Desenvolver API</div>
+                    <div class="task-meta"><span>#003</span> <span>Alta</span></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="column-header">Pronto</div>
+                <div class="task-card">
+                    <div class="task-title">Configurar Banco</div>
+                    <div class="task-meta"><span>#000</span> <span>Baixa</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
