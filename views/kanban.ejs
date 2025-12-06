@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- O menu da aplicação deve vir aqui -->
+    <%- include('./partials/head') %>
+
+<body>
+
+    <!-- O menu da aplicação deve vir aqui -->
+    <%- include('./partials/navbar') %>
+
+    <div class="container">
+        <div class="kanban-board">
+            <div class="column">
+                <div class="column-header">A fazer</div>
+                <div class="task-card">
+                    <div class="task-title">Análise de Requisitos</div>
+                    <div class="task-meta"><span>#001</span> <span>Alta</span></div>
+                </div>
+                <div class="task-card">
+                    <div class="task-title">Criar Mockups</div>
+                    <div class="task-meta"><span>#002</span> <span>Média</span></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="column-header">Em andamento.</div>
+                <div class="task-card">
+                    <div class="task-title">Desenvolver API</div>
+                    <div class="task-meta"><span>#003</span> <span>Alta</span></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="column-header">Pronto</div>
+                <div class="task-card">
+                    <div class="task-title">Configurar Banco</div>
+                    <div class="task-meta"><span>#000</span> <span>Baixa</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

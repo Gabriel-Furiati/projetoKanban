@@ -6,144 +6,93 @@ const mostraPaginaInicial = (req, res) => {
 
     // Este exemplo pode ser usado para testar o envio de dados direto (hardcoded) para a view
     //===================================================================================================================================
-    // dados = {
-    //     mensagem:'rota raiz', 
-    //     titulo:'pagina principal',
+    dados = {
+        mensagem:'rota raiz', 
+        titulo:'pagina principal',
 
-    //     // É possível enviar dados diretamente para testes da view sem precisar consultar o banco
-    //     exemplos:[ 
-    //         {
-    //             campo1: 'L1 - Dados 1',
-    //             campo2: 'L1 - Dados 2',
-    //             campo3: 'L1 - Dados 3',
-    //         },
-    //         {
-    //             campo1: 'L2 - Dados 1',
-    //             campo2: 'L2 - Dados 2',
-    //             campo3: 'L2 - Dados 3',
-    //         }            
-    //     ]
-    // }
+        // É possível enviar dados diretamente para testes da view sem precisar consultar o banco
+        exemplos:[ 
+            {
+                campo1: 'L1 - Dados 1',
+                campo2: 'L1 - Dados 2',
+                campo3: 'L1 - Dados 3',
+            },
+            {
+                campo1: 'L2 - Dados 1',
+                campo2: 'L2 - Dados 2',
+                campo3: 'L2 - Dados 3',
+            }            
+        ]
+    }
     
-    // res.render('main', { dados:dados})
+    res.render('kanban', { dados:dados})
 
+}
 
-    // Este exemplo pode ser usado para pesquisar usando termos específicos. Por exemplo quando tempos campos de pesquisa
+const mostraPaginaNovoUsuario = (req, res) => {
+
+    console.log('mainController.js','mostraPaginaNovoUsuario()')
+
+    // Este exemplo pode ser usado para testar o envio de dados direto (hardcoded) para a view
     //===================================================================================================================================
-    // Exemplo.readExemplos({campo1:'teste'}).then(
-    //     (dadosdb) => {
-
-    //         dados = {
-    //             mensagem:'rota raiz', 
-    //             titulo:'pagina principal',
-
-    //             // É possível enviar dados diretamente para testes da view sem precisar consultar o banco
-    //             exemplos: dadosdb
-    //         }
-            
-    //         res.render('main', { dados})
-    //     }
-    // )
-
-
-
-    // Busca os dados no banco
-    Exemplo.readAllExemplos().then(
-        (dadosdb) => {
-
-            dados = {
-                mensagem:'rota raiz', 
-                titulo:'pagina principal',
-
-                // É possível enviar dados diretamente para testes da view sem precisar consultar o banco
-                exemplos: dadosdb
-            }
-            
-            res.render('main', { dados})
-        }
-    )
-    
-}
-
-
-const mostraPaginaCadastrar = (req, res) => {
-
-    console.log('mainController.js','mostraPaginaCadastrar()')
-
     dados = {
-        mensagem:'rota cadastrar', 
-        titulo:'Cadastrar exemplo',
-    }
+        mensagem:'rota novo usuario', 
+        titulo:'pagina novo usuario',
 
-    res.render('cadastrar', { dados:dados})
+        // É possível enviar dados diretamente para testes da view sem precisar consultar o banco
+        exemplos:[ 
+            {
+                campo1: 'L1 - Dados 1',
+                campo2: 'L1 - Dados 2',
+                campo3: 'L1 - Dados 3',
+            },
+            {
+                campo1: 'L2 - Dados 1',
+                campo2: 'L2 - Dados 2',
+                campo3: 'L2 - Dados 3',
+            }            
+        ]
+    }
+    
+    res.render('novousuario', { dados:dados})
 
 }
 
-// chamado a partir da rota GET /cadastrar
-const  mostraPaginaAlterar = (req, res) => {
+const mostraPaginaNovaTarefa = (req, res) => {
 
-    console.log('mainController.js','mostraPaginaAlterar()')
+    console.log('mainController.js','mostraPaginaNovaTarefa()')
 
-    const id = req.params.id;
-
-    let dados
-
+    // Este exemplo pode ser usado para testar o envio de dados direto (hardcoded) para a view
+    //===================================================================================================================================
     dados = {
-                mensagem:'rota cadastrar', 
-                titulo:'Cadastrar exemplo',
+        mensagem:'rota nova tarefa', 
+        titulo:'pagina nova tarefa',
+
+        // É possível enviar dados diretamente para testes da view sem precisar consultar o banco
+        exemplos:[ 
+            {
+                campo1: 'L1 - Dados 1',
+                campo2: 'L1 - Dados 2',
+                campo3: 'L1 - Dados 3',
+            },
+            {
+                campo1: 'L2 - Dados 1',
+                campo2: 'L2 - Dados 2',
+                campo3: 'L2 - Dados 3',
+            }            
+        ]
     }
-
-    Exemplo.readExemplo(id).then(
-        (dadosdb) => {
-            dados.exemplo = dadosdb[0]
-            res.render('cadastrar', {dados})
-        }
-    )
-     
-}
-
-
-// chamado a partir da rota POST /cadastrar
-const  cadastrarExemplo = (req, res) => {
     
-    console.log('mainController.js','cadastrarExemplo()')
-    const dados = req.body;
-    console.log('Dados no body: ',dados)
-
-    Exemplo.createExemplo(dados)
-
-    return res.redirect('/')
+    res.render('novatarefa', { dados:dados})
 
 }
 
 
-const  alterarExemplo = (req, res) => {
 
-    console.log('mainController.js','alterarExemplo()')
-    const dados = req.body;
-
-    Exemplo.updateExemplo(dados.id_exemplo,dados)
-
-    return res.redirect('/')
-
-}
-
-const  excluirExemplo = (req, res) => {
-
-    console.log('mainController.js','alterarExemplo()')
-    const id = req.params.id;
-
-    Exemplo.deleteExemplo(id)
-    
-    return res.send('dados excluidos com sucesso')
-
-}
 
 module.exports =  {
     mostraPaginaInicial,
-    mostraPaginaCadastrar,
-    mostraPaginaAlterar,
-    cadastrarExemplo,
-    alterarExemplo,
-    excluirExemplo,
+    mostraPaginaNovoUsuario,
+    mostraPaginaNovaTarefa
+
 };
