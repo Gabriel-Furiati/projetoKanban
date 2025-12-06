@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- O menu da aplicação deve vir aqui -->
+    <%- include('./partials/head') %>
+
+<body>
+
+    <!-- O menu da aplicação deve vir aqui -->
+    <%- include('./partials/navbar') %>
+
+    <div class="container">
+        <div class="form-card">
+            <h2 style="margin-top:0;">Novo Usuário</h2>
+            
+            <div class="form-group">
+                <label>id do usuário</label>
+                <span class="static-id">000010</span>
+            </div>
+
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary">Ok</button>
+                <button class="btn btn-secondary">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
