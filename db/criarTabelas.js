@@ -36,6 +36,7 @@ async function criarTabelas() {
 criarTabelas();
 
 
+<<<<<<< HEAD
 
 /*
 Criação da tabela USUARIO
@@ -62,3 +63,30 @@ ALTER TABLE TAREFA ADD CONSTRAINT FK_TAREFA_2
     REFERENCES USUARIO (Id_usuario)
     ON DELETE CASCADE;
 */
+=======
+/*
+-- 1. Tabela de USUÁRIOS
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- 2. Tabela de TAREFAS
+
+CREATE TABLE IF NOT EXISTS tarefas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,           -- Vinculo com o usuário (Foreign Key)
+    descricao TEXT NOT NULL,           -- No documento pede 'descrição', não título
+    setor VARCHAR(100) NOT NULL,       -- Nome do setor (Ex: "Qualidade", "Produção")
+    prioridade VARCHAR(20) NOT NULL,   -- Baixa, Média, Alta
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'a_fazer', -- Padrão: "A Fazer"
+    
+    CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+
+*/
+>>>>>>> 1095c6637b9136d284f016a21618f094724045f5
