@@ -1,311 +1,233 @@
-/* Inicio do css Reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+/* ============================================================
+   1. CONFIGURAÇÕES GERAIS (Base)
+   ============================================================ */
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif; 
+    color: #000000;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+
 body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/* Final do css Reset */
-
-/* Adicione a partir daqui eu CSS */
-
-/*------------------------------------------------------------------------------------------------------------------------*/
-/* INICIO DO CSS CUSTOMIZADO                                                                                              */
-/*------------------------------------------------------------------------------------------------------------------------*/
-
-
-        /* =========================================
-   1. VARIAVEIS E RESET (Base)
-   ========================================= */
-:root {
-    --primary: #4a90e2;          /* Azul principal */
-    --primary-hover: #357abd;    /* Azul escuro (hover) */
-    --bg-body: #f4f6f8;          /* Fundo cinza claro da página */
-    --bg-card: #ffffff;          /* Fundo branco dos cards */
-    --text-dark: #333333;        /* Texto principal */
-    --text-light: #666666;       /* Texto secundário/labels */
-    --border: #dddddd;           /* Bordas suaves */
-    --danger: #e74c3c;           /* Vermelho para excluir */
-    /* Sombras para dar profundidade */
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-}
- 
-* { box-sizing: border-box; }
- 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-body);
-    color: var(--text-dark);
+    background-color: #ffffff;
     margin: 0;
-    line-height: 1.5;
+    padding: 20px;
 }
- 
-a { text-decoration: none; }
- 
-/* =========================================
-   2. NAVBAR (Compartilhada)
-   ========================================= */
-.navbar {
-    background-color: var(--bg-card);
-    padding: 1rem 2rem;
-    border-bottom: 1px solid var(--border);
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
+h2, .column-header {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+/* ============================================================
+   2. PADRONIZAÇÃO DE BORDAS FINAS
+   ============================================================ */
+input, select, textarea, .task-card, .column, .btn, .form-card {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background: #ffffff;
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #333;
+    background-color: #fafafa;
+}
+
+/* ============================================================
+   3. KANBAN BOARD
+   ============================================================ */
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.column {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    min-height: 400px;
+    background-color: #ffffff;
+}
+
+.column-header {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.task-card {
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #000;
+}
+
+.task-card:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.task-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.task-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* ============================================================
+   4. FORMULÁRIOS
+   ============================================================ */
+.form-card {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: none;
+}
+
+/* Grid System para Nova Tarefa */
+.row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- AQUI ESTÁ A ALTERAÇÃO --- */
+/* Espaçamento extra para o formulário de Novo Usuário */
+.form-group {
+    margin-bottom: 30px; /* Aumentei o espaço entre as linhas aqui */
+}
+
+label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 8px; /* Dei um respiro entre o label e o input também */
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px; /* Aumentei um pouco o padding interno para ficar mais elegante */
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.static-field, .static-id {
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* ============================================================
+   5. BOTÕES
+   ============================================================ */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px; /* Mais espaço acima dos botões */
+    justify-content: flex-start;
+}
+
+.btn {
+    padding: 10px 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #000;
+}
+.btn-secondary:hover {
+    background-color: #f0f0f0;
+}
+
+/* ============================================================
+   6. NAVBAR
+   ============================================================ */
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
- 
-.navbar .logo {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: var(--text-dark);
-}
- 
-.nav-links a {
-    margin-left: 20px;
-    color: var(--text-light);
-    font-weight: 500;
-    transition: color 0.3s;
-    font-size: 0.95rem;
-}
- 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--primary);
-}
- 
-/* =========================================
-   3. LAYOUT & CONTAINERS
-   ========================================= */
-.container {
-    padding: 2rem;
-    margin: 0 auto;
-    width: 100%;
-}
- 
-/* Container largo para o Kanban */
-.container-wide { max-width: 1200px; }
- 
-/* Container médio para Formulário de Tarefa */
-.container-form { max-width: 800px; }
- 
-/* Container estreito para Novo Usuário */
-.container-small { max-width: 500px; }
- 
-/* Wrapper para centralizar a tela de Detalhes (sem navbar) */
-.centered-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
- 
-/* =========================================
-   4. FORMULÁRIOS E INPUTS
-   ========================================= */
-.card-box {
-    background: var(--bg-card);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border);
-}
- 
-.form-group { margin-bottom: 1.2rem; }
- 
-/* Grid simples para inputs lado a lado */
-.row { display: flex; gap: 20px; margin-bottom: 15px; }
-.col { flex: 1; }
- 
-label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #444;
-}
- 
-input[type="text"],
-input[type="email"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #fff;
-    transition: border 0.2s;
-}
- 
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-}
- 
-textarea { resize: vertical; height: 100px; }
- 
-.static-field {
-    padding: 10px 0;
-    color: var(--text-light);
-    font-size: 0.95rem;
-    background: transparent;
-    border-bottom: 1px dashed #ddd; /* Estilo sutil para campo leitura */
-}
- 
-/* =========================================
-   5. BOTÕES
-   ========================================= */
-.btn-group {
-    margin-top: 2rem;
-    display: flex;
-    gap: 10px;
-}
- 
-.btn {
-    padding: 10px 25px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s;
-    text-align: center;
-    flex: 1; /* Para botões lado a lado ocuparem mesmo espaço */
-}
- 
-/* Botão Azul */
-.btn-primary { background-color: var(--primary); color: white; }
-.btn-primary:hover { background-color: var(--primary-hover); }
- 
-/* Botão Branco/Cinza */
-.btn-secondary { background-color: white; border: 1px solid #ccc; color: #555; }
-.btn-secondary:hover { background-color: #f0f0f0; border-color: #bbb; }
- 
-/* Botão Vermelho (Excluir) */
-.btn-danger { background-color: white; border: 1px solid var(--danger); color: var(--danger); }
-.btn-danger:hover { background-color: var(--danger); color: white; }
- 
-/* =========================================
-   6. KANBAN (Específico)
-   ========================================= */
-.kanban-board {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
-    gap: 1.5rem;
-}
- 
-.column {
-    background-color: #eef0f5;
-    border-radius: 8px;
-    padding: 1rem;
-    min-height: 500px; /* Altura mínima da coluna */
-}
- 
-.column-header {
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: var(--text-dark);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-}
- 
-.task-card {
-    background: var(--bg-card);
-    padding: 1rem;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s;
-    border: 1px solid transparent;
-}
- 
-.task-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--primary);
-}
- 
-.task-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
-.task-meta { font-size: 0.8rem; color: var(--text-light); display: flex; justify-content: space-between; }
- 
-/* =========================================
-   7. TELA DETALHES (Modal Card)
-   ========================================= */
-.card-detail { 
-    background: var(--bg-card); 
-    padding: 2.5rem; 
-    border-radius: 12px; 
-    box-shadow: var(--shadow-lg); 
-    width: 100%; 
-    max-width: 550px;
-    border: 1px solid #e1e1e1;
-}
- 
-.title-display { 
-    border: 1px solid #ddd; 
-    padding: 10px; 
-    border-radius: 4px; 
-    background-color: #fafafa;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-}
- 
-.back-link {
+    padding: 15px 0;
     margin-bottom: 20px;
-    color: #666;
-    font-size: 0.9rem;
-    display: inline-block;
+    border-bottom: 1px solid #000;
 }
-.back-link:hover { text-decoration: underline; }
 
-/*------------------------------------------------------------------------------------------------------------------------*/
-/* FINAL DO CSS CUSTOMIZADO                                                                                              */
-/*------------------------------------------------------------------------------------------------------------------------*/
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+nav h1, nav .navbar-brand {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* ============================================================
+   7. RESPONSIVIDADE
+   ============================================================ */
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column;
+    }
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .col {
+        margin-bottom: 15px;
+    }
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    .btn-group {
+        flex-direction: column;
+    }
+}
