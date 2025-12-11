@@ -10,5 +10,5 @@
  
  */ 
 
-  CREATE DATABASE dbkanban
-    CHARACTER SET utf8mb4;
+  CREATE DATABASE dbprojeto1
+    CHARACTER SET utf8mb4; 

@@ -34,3 +34,31 @@ async function criarTabelas() {
 }
 
 criarTabelas();
+
+
+
+/*
+Criação da tabela USUARIO
+CREATE TABLE USUARIO (
+    Id_usuario SMALLINT auto_increment PRIMARY KEY,
+    Nome_usuario VARCHAR (60) not null,
+    Email_usuario VARCHAR (61) not null
+);
+
+Criação da tabela TAREFA
+CREATE TABLE TAREFA (
+    Id_tarefa SMALLINT auto_increment PRIMARY KEY,
+    Descricao VARCHAR (80) not null,
+    Setor VARCHAR (5) not null,
+    Data_cadastro DATE 10,
+    Status CHAR ENUM('A Fazer','Fazendo','Feito'),
+    Prioridade CHAR ENUM('Baixa','Média','Alta'),
+    FK_USUARIO_Id_usuario SMALLINT
+);
+
+Adicionando a restrição de chave estrangeira (FK) na tabela TAREFA
+ALTER TABLE TAREFA ADD CONSTRAINT FK_TAREFA_2
+    FOREIGN KEY (FK_USUARIO_Id_usuario)
+    REFERENCES USUARIO (Id_usuario)
+    ON DELETE CASCADE;
+*/
