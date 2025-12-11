@@ -36,7 +36,7 @@ async function criarTabelas() {
 criarTabelas();
 
 
-<<<<<<< HEAD
+ HEAD
 
 /*
 Criação da tabela USUARIO
@@ -63,7 +63,7 @@ ALTER TABLE TAREFA ADD CONSTRAINT FK_TAREFA_2
     REFERENCES USUARIO (Id_usuario)
     ON DELETE CASCADE;
 */
-=======
+
 /*
 -- 1. Tabela de USUÁRIOS
 
@@ -89,4 +89,3 @@ CREATE TABLE IF NOT EXISTS tarefas (
 
 
 */
->>>>>>> 1095c6637b9136d284f016a21618f094724045f5
