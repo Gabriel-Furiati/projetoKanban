@@ -1,44 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <!-- O menu da aplicação deve vir aqui -->
-    <%- include('./partials/head') %>
-
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kanban</title>
+  <link rel="stylesheet" href="/css/mainStyles.css">
+</head>
 <body>
 
-    <!-- O menu da aplicação deve vir aqui -->
-    <%- include('./partials/navbar') %>
-
-    <div class="container">
-        <div class="kanban-board">
-            <div class="column">
-                <div class="column-header">A fazer</div>
-                <div class="task-card">
-                    <div class="task-title">Análise de Requisitos</div>
-                    <div class="task-meta"><span>#001</span> <span>Alta</span></div>
-                </div>
-                <div class="task-card">
-                    <div class="task-title">Criar Mockups</div>
-                    <div class="task-meta"><span>#002</span> <span>Média</span></div>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="column-header">Em andamento.</div>
-                <div class="task-card">
-                    <div class="task-title">Desenvolver API</div>
-                    <div class="task-meta"><span>#003</span> <span>Alta</span></div>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="column-header">Pronto</div>
-                <div class="task-card">
-                    <div class="task-title">Configurar Banco</div>
-                    <div class="task-meta"><span>#000</span> <span>Baixa</span></div>
-                </div>
-            </div>
-        </div>
+  <nav>
+    <a href="/" class="logo">Board de tarefas</a>
+    <div class="nav-links">
+      <a href="/">Kanban</a>
+      <a href="/novo-usuario">Novo usuário</a>
+      <a href="/nova-tarefa">Nova Tarefa</a>
     </div>
+  </nav>
 
+  <main class="container">
+    <!-- id necessário para o script localizar o container -->
+    <div id="kanbanContainer" class="kanban">
+      <div id="todoColumn" class="column">
+        <h3 class="column-title">A fazer</h3>
+      </div>
+
+      <div id="doingColumn" class="column">
+        <h3 class="column-title">Em andamento</h3>
+      </div>
+
+      <div id="doneColumn" class="column">
+        <h3 class="column-title">Pronto</h3>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/main.js"></script>
 </body>
 </html>

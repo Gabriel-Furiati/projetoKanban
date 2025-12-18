@@ -1,31 +1,43 @@
+// index.js
+const path = require('path');
 const express = require('express');
-const app = express();
-
-//importação de rotas
-const mainRoutes = require('./routes/mainRoutes'); 
-
-//variáveis de ambiente
+const mainRoutes = require('./routes/mainRoutes');
 require('dotenv').config();
 
+const app = express();
 
-// configurações iniciais
-app.set('views', './views');
+// --- COLE ISSO AQUI PARA TESTAR ---
+console.log('--- DIAGNÓSTICO ---');
+console.log('Pasta atual (__dirname):', __dirname);
+console.log('Onde o servidor busca a pasta public:', path.join(__dirname, 'public'));
+console.log('---------------------');
+// ----------------------------------
+
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.static('./public'));
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const porta = Number(process.env.PORTA) || 3000
 
+app.use('/', mainRoutes);
 
-//rotas principais da aplicação
-app.use('/',mainRoutes);
-
-// Rota de erro
+// rota 404 com fallback seguro
 app.use((req, res) => {
-  res.status(404).render('erro404',{titulo:'rota não encontrada'});
+  try {
+    return res.status(404).render('erro404', { titulo: 'Rota não encontrada' });
+  } catch (err) {
+    console.error('Erro ao renderizar erro404:', err);
+    return res.status(404).send('Rota não encontrada');
+  }
 });
 
-app.listen(porta, () => {
-    console.log('Servidor rodando');
-    console.log('Endereco: http://localhost:'+porta);
-});
+if (require.main === module) {
+  const PORT = process.env.PORTA || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Acesse em: http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

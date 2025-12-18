@@ -1,66 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <!-- O menu da aplicação deve vir aqui -->
-    <%- include('./partials/head') %>
-
-<body>
-
-    <!-- O menu da aplicação deve vir aqui -->
-    <%- include('./partials/navbar') %>
-
-    <div class="container">
-        <div class="form-card">
-            <h2>Nova Tarefa</h2>
-            
-            <div class="row">
-                <div class="col">
-                    <label>Id da tarefa</label>
-                    <div class="static-field">000000</div>
-                </div>
-                <div class="col">
-                    <label>Aberto por</label>
-                    <div class="static-field">José da Silva</div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <label>Prioridade</label>
-                    <select>
-                        <option>Normal</option>
-                        <option>Alta</option>
-                        <option>Baixa</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <label>Responsável atual</label>
-                    <select>
-                        <option>André Torres</option>
-                        <option>Maria Souza</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <label>Título da Tarefa</label>
-                    <input type="text" placeholder="Digite o título...">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <label>Descrição da Tarefa</label>
-                    <textarea placeholder="Descreva os detalhes..."></textarea>
-                </div>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn btn-primary">Ok</button>
-                <button class="btn btn-secondary">Cancelar</button>
-            </div>
+<!doctype html>
+<html>
+  <%- include('partials/head', { titulo: 'Nova Tarefa' }) %>
+  <body>
+    <%- include('partials/navbar', { active: 'nova-tarefa' }) %>
+ 
+    <main class="container">
+      <h1>Nova Tarefa</h1>
+ 
+      <form id="formNovaTarefa" class="formulario">
+       
+        <div class="row">
+           
         </div>
-    </div>
-
-</body>
+ 
+        <div class="row">
+          <div class="col">
+            <label for="prioridadeTarefa">Prioridade</label>
+            <select id="prioridadeTarefa" name="prioridade">
+              <option value="" disabled selected>Selecione</option>
+             
+              <option value="Baixa">Baixa</option>
+              <option value="Normal">Média</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </div>
+ 
+          <div class="col">
+            <label for="responsavelSelect">Responsável atual</label>
+            <select id="responsavelSelect" name="fk_usuario">
+              <option value="">André Torres</option> </select>
+          </div>
+        </div>
+ 
+        <div class="form-group">
+          <label for="tituloTarefa">Título da Tarefa</label>
+          <input id="tituloTarefa" name="titulo" type="text" placeholder="Digite o título...">
+        </div>
+ 
+        <div class="form-group">
+          <label for="descricaoTarefa">Descrição da Tarefa</label>
+          <textarea id="descricaoTarefa" name="descricao" placeholder="Descreva os detalhes..."></textarea>
+        </div>
+ 
+        <div class="btn-group">
+          <button class="btn btn-primary" type="submit">OK</button>
+          <a class="btn btn-secondary" href="/">CANCELAR</a>
+        </div>
+      </form>
+    </main>
+ 
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+  </body>
 </html>

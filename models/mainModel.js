@@ -1,96 +1,254 @@
-const dbExemplo = require('../db/dbConnect.js')
+const db = require('../db/dbConnect.js')
 
-// CRUD PARA CADA CLASSE DA TABELA
-class Exemplo {
+// ============================================================================
+//  MODEL USUARIO
+// ============================================================================
+class Usuario {
 
+    // CREATE
+    // --------------------------------------------------------------------------
+    static async createUsuario(dados) {
 
-    //CREATE
-    //==============================================================================
-    static async createExemplo(dados){
-
-        const { campo1, campo2, campo3 } = dados
-        // debug da função
-        console.log('mainModel.js','Exemplo.createExemplo()')
+        const { Nome_usuario, Email_usuario } = dados;
+        console.log('mainModel.js', 'Usuario.createUsuario()');
         console.log(arguments);
 
-
-        return await dbExemplo.executarQuery(
-            'INSERT INTO tabelaExemplo(campo1, campo2, campo3) VALUES (?, ?, ?)',
-            [campo1, campo2, campo3]
-        )
-
-    }        
-
-    //READ
-    //==============================================================================
-    static async readAllExemplos(){
-        
-        // debug da função
-        console.log('mainModel.js','Exemplo.readAllExemplos');
-        console.log(arguments);
-
-
-        return await dbExemplo.executarQuery('SELECT * FROM tabelaExemplo');
+        return await db.executarQuery(
+            'INSERT INTO usuario (Nome_usuario, Email_usuario) VALUES (?, ?)',
+            [Nome_usuario, Email_usuario]
+        );
     }
 
+    // READ ALL
+    // --------------------------------------------------------------------------
+    static async readAllUsuarios() {
 
-    static async readExemplos(filtros = {}){
-
-        // debug da função
-        console.log('mainModel.js','Exemplo.readExemplos()')
+        console.log('mainModel.js', 'Usuario.readAllUsuarios()');
         console.log(arguments);
 
-
-        const {id_exemplo,campo1,campo2,campo3} = filtros
- 
-        var query = 'SELECT * FROM tabelaExemplo WHERE '
-        query+= 'id_exemplo LIKE ? '
-        query+= 'AND campo1 LIKE ? '
-        query+= 'AND campo2 LIKE ? '
-        query+= 'AND campo3 LIKE ? '
-        
-
-        return  await dbExemplo.executarQuery(query,[`%${id_exemplo||''}%`, `%${campo1||''}%`,`%${campo2||''}%`,`%${campo3||''}%`])
+        return await db.executarQuery('SELECT * FROM usuario');
     }
 
-    static async readExemplo(id){
+    // READ COM FILTROS
+    // --------------------------------------------------------------------------
+    static async readUsuarios(filtros = {}) {
 
-        // debug da função
-        console.log('mainModel.js','Exemplo.readExemplo()')
+        console.log('mainModel.js', 'Usuario.readUsuarios()');
         console.log(arguments);
 
-        return await dbExemplo.executarQuery('SELECT * FROM tabelaExemplo where id_exemplo = ?',[id]);
+        const { Id_usuario, Nome_usuario, Email_usuario } = filtros;
 
+        var query = 'SELECT * FROM usuario WHERE ';
+        query += 'Id_usuario LIKE ? ';
+        query += 'AND Nome_usuario LIKE ? ';
+        query += 'AND Email_usuario LIKE ? ';
+
+        return await db.executarQuery(query, [
+            `%${Id_usuario || ''}%`,
+            `%${Nome_usuario || ''}%`,
+            `%${Email_usuario || ''}%`
+        ]);
     }
 
-    //UPDATE
-    //==============================================================================
-    static async updateExemplo(id,dados = {}){
-        
-        // debug da função
-        console.log('mainModel.js','Exemplo.updateExemplo()')
+    // READ BY ID
+    // --------------------------------------------------------------------------
+    static async readUsuario(id) {
+
+        console.log('mainModel.js', 'Usuario.readUsuario()');
         console.log(arguments);
 
-        const {campo1,campo2,campo3} = dados
-
-        const query = 'UPDATE tabelaExemplo SET campo1 = ?, campo2 = ?, campo3 = ? WHERE id_exemplo = ?';
-
-        return dbExemplo.executarQuery(query,[campo1,campo2,campo3, id]);
+        return await db.executarQuery(
+            'SELECT * FROM usuario WHERE Id_usuario = ?',
+            [id]
+        );
     }
 
-    
-    //DELETE
-    //==============================================================================
-    static async deleteExemplo(id){
-        
-        // debug da função
-        console.log('mainModel.js','Exemplo.deleteExemplo()')
+    // UPDATE
+    // --------------------------------------------------------------------------
+    static async updateUsuario(id, dados = {}) {
+
+        console.log('mainModel.js', 'Usuario.updateUsuario()');
         console.log(arguments);
 
-        return await dbExemplo.executarQuery('DELETE FROM tabelaExemplo where id_exemplo = ?',[id]);
+        const { Nome_usuario, Email_usuario } = dados;
+
+        return db.executarQuery(
+            'UPDATE usuario SET Nome_usuario = ?, Email_usuario = ? WHERE Id_usuario = ?',
+            [Nome_usuario, Email_usuario, id]
+        );
     }
 
+    // DELETE
+    // --------------------------------------------------------------------------
+    static async deleteUsuario(id) {
 
+        console.log('mainModel.js', 'Usuario.deleteUsuario()');
+        console.log(arguments);
+
+        return await db.executarQuery(
+            'DELETE FROM usuario WHERE Id_usuario = ?',
+            [id]
+        );
+    }
 }
 
-module.exports = Exemplo;
+
+
+// ============================================================================
+//  MODEL TAREFA
+// ============================================================================
+class Tarefa {
+
+    // CREATE
+    // --------------------------------------------------------------------------
+    static async createTarefa(dados) {
+
+        const {
+            Descricao,
+            Setor,
+            Data_cadastro,
+            Status,
+            Prioridade,
+            FK_USUARIO_Id_usuario
+        } = dados;
+
+        console.log('mainModel.js', 'Tarefa.createTarefa()');
+        console.log(arguments);
+
+        return await db.executarQuery(
+            `
+            INSERT INTO tarefa 
+                (Descricao, Setor, Data_cadastro, Status, Prioridade, FK_USUARIO_Id_usuario)
+            VALUES (?, ?, ?, ?, ?, ?)
+            `,
+            [
+                Descricao,
+                Setor,
+                Data_cadastro,
+                Status,
+                Prioridade,
+                FK_USUARIO_Id_usuario
+            ]
+        );
+    }
+
+    // READ ALL
+    // --------------------------------------------------------------------------
+    static async readAllTarefas() {
+
+        console.log('mainModel.js', 'Tarefa.readAllTarefas()');
+        console.log(arguments);
+
+        return await db.executarQuery('SELECT * FROM tarefa');
+    }
+
+    // READ FILTRADO
+    // --------------------------------------------------------------------------
+    static async readTarefas(filtros = {}) {
+
+        console.log('mainModel.js', 'Tarefa.readTarefas()');
+        console.log(arguments);
+
+        const {
+            Id_tarefa,
+            Descricao,
+            Setor,
+            Data_cadastro,
+            Status,
+            Prioridade,
+            FK_USUARIO_Id_usuario
+        } = filtros;
+
+        var query = 'SELECT * FROM tarefa WHERE ';
+        query += 'Id_tarefa LIKE ? ';
+        query += 'AND Descricao LIKE ? ';
+        query += 'AND Setor LIKE ? ';
+        query += 'AND Data_cadastro LIKE ? ';
+        query += 'AND Status LIKE ? ';
+        query += 'AND Prioridade LIKE ? ';
+        query += 'AND FK_USUARIO_Id_usuario LIKE ? ';
+
+        return await db.executarQuery(query, [
+            `%${Id_tarefa || ''}%`,
+            `%${Descricao || ''}%`,
+            `%${Setor || ''}%`,
+            `%${Data_cadastro || ''}%`,
+            `%${Status || ''}%`,
+            `%${Prioridade || ''}%`,
+            `%${FK_USUARIO_Id_usuario || ''}%`
+        ]);
+    }
+
+    // READ BY ID
+    // --------------------------------------------------------------------------
+    static async readTarefa(id) {
+
+        console.log('mainModel.js', 'Tarefa.readTarefa()');
+        console.log(arguments);
+
+        return await db.executarQuery(
+            'SELECT * FROM tarefa WHERE Id_tarefa = ?',
+            [id]
+        );
+    }
+
+    // UPDATE
+    // --------------------------------------------------------------------------
+    static async updateTarefa(id, dados = {}) {
+
+        console.log('mainModel.js', 'Tarefa.updateTarefa()');
+        console.log(arguments);
+
+        const {
+            Descricao,
+            Setor,
+            Data_cadastro,
+            Status,
+            Prioridade,
+            FK_USUARIO_Id_usuario
+        } = dados;
+
+        return db.executarQuery(
+            `
+            UPDATE tarefa SET 
+                Descricao = ?,
+                Setor = ?,
+                Data_cadastro = ?,
+                Status = ?,
+                Prioridade = ?,
+                FK_USUARIO_Id_usuario = ?
+            WHERE Id_tarefa = ?
+            `,
+            [
+                Descricao,
+                Setor,
+                Data_cadastro,
+                Status,
+                Prioridade,
+                FK_USUARIO_Id_usuario,
+                id
+            ]
+        );
+    }
+
+    // DELETE
+    // --------------------------------------------------------------------------
+    static async deleteTarefa(id) {
+
+        console.log('mainModel.js', 'Tarefa.deleteTarefa()');
+        console.log(arguments);
+
+        return await db.executarQuery(
+            'DELETE FROM tarefa WHERE Id_tarefa = ?',
+            [id]
+        );
+    }
+}
+
+
+
+// EXPORTA AS DUAS CLASSES
+module.exports = {
+    Usuario,
+    Tarefa
+}

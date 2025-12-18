@@ -11,8 +11,5 @@
  */ 
 
   CREATE DATABASE dbprojeto1
-<<<<<<< HEAD
     CHARACTER SET utf8mb4; 
-=======
-    CHARACTER SET utf8mb4;
->>>>>>> 1095c6637b9136d284f016a21618f094724045f5
+

@@ -1,174 +1,245 @@
 /* ============================================================
-   1. CONFIGURAÇÕES GERAIS (Base)
+   ESTILO WIREFRAME (PRETO E BRANCO)
    ============================================================ */
+
 * {
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif; 
-    color: #000000;
+    font-family: 'Arial', sans-serif; /* Fonte simples igual às imagens */
+    color: #000;
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #fff;
     margin: 0;
-    padding: 20px;
+    padding: 20px 40px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #000000;
-    border-radius: 4px;
+/* --- NAVBAR --- */
+nav, .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Alinha o texto na base da linha */
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000; /* Linha preta grossa */
+    margin-bottom: 30px;
 }
 
-h2, .column-header {
+.logo {
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    text-decoration: none;
 }
 
-/* ============================================================
-   2. PADRONIZAÇÃO DE BORDAS FINAS
-   ============================================================ */
-input, select, textarea, .task-card, .column, .btn, .form-card {
-    border: 1px solid #000000;
-    border-radius: 4px;
-    background: #ffffff;
-    outline: none;
-}
-
-input:focus, select:focus, textarea:focus {
-    border-color: #333;
-    background-color: #fafafa;
-}
-
-/* ============================================================
-   3. KANBAN BOARD
-   ============================================================ */
-.kanban-board {
+.nav-links {
     display: flex;
     gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 10px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+}
+
+/* --- CAIXA PRINCIPAL (CONTAINER) --- */
+.container {
+    border: 1px solid #000; /* Borda da caixa grande */
+    border-radius: 4px;
+    padding: 40px;
+    min-height: 600px;
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+/* --- KANBAN BOARD (COLUNAS) --- */
+.kanban {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
 }
 
 .column {
-    flex: 1;
-    min-width: 250px;
+    flex: 1; /* Faz as 3 colunas terem o mesmo tamanho */
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 15px;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-    min-height: 400px;
-    background-color: #ffffff;
 }
 
-.column-header {
+/* O Título da coluna (A fazer, etc) */
+.column-title {
     text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    border: none;
-}
-
-.task-card {
-    padding: 15px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid #000;
-}
-
-.task-card:hover {
-    background-color: rgb(255, 255, 255);
-}
-
-.task-title {
     font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    display: block !important; /* Força a aparecer */
 }
 
-.task-meta {
+/* Cards dentro das colunas */
+.card-task {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.card-footer {
     display: flex;
     justify-content: space-between;
-    font-size: 0.85rem;
-    color: #555;
+    font-size: 12px;
 }
 
-/* ============================================================
-   4. FORMULÁRIOS
-   ============================================================ */
-.form-card {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: none;
+/* Card estilo imagem */
+.task-card {
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 14px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
 }
 
-/* Grid System para Nova Tarefa */
+/* linha superior: título */
+.task-card h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+}
+
+/* meta row: ID (left) e Prioridade (right) */
+.task-card .meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #111;
+}
+
+/* badge de prioridade */
+.task-card .priority {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+
+/* descrição */
+.task-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #222;
+  white-space: pre-wrap;
+}
+
+/* responsável em destaque no rodapé do card */
+.task-card .owner {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* --- FORMULÁRIOS --- */
+.form-group {
+    margin-bottom: 25px;
+}
+
 .row {
     display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
+    gap: 30px;
+    margin-bottom: 25px;
 }
 
 .col {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* --- AQUI ESTÁ A ALTERAÇÃO --- */
-/* Espaçamento extra para o formulário de Novo Usuário */
-.form-group {
-    margin-bottom: 30px; /* Aumentei o espaço entre as linhas aqui */
 }
 
 label {
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-bottom: 8px; /* Dei um respiro entre o label e o input também */
     display: block;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+/* Textos fixos (ID, Aberto por) */
+.static-value {
+    display: block;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 5px;
 }
 
 input, select, textarea {
     width: 100%;
-    padding: 12px; /* Aumentei um pouco o padding interno para ficar mais elegante */
-    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
 }
 
 textarea {
-    resize: vertical;
-    min-height: 100px;
+    resize: none;
+    height: 100px;
 }
 
-.static-field, .static-id {
-    border: none;
-    background: transparent;
-    padding: 10px 0;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-/* ============================================================
-   5. BOTÕES
-   ============================================================ */
+/* --- BOTÕES (OK / CANCELAR) --- */
 .btn-group {
+    margin-top: 30px;
     display: flex;
-    gap: 15px;
-    margin-top: 30px; /* Mais espaço acima dos botões */
-    justify-content: flex-start;
+    gap: 10px;
 }
 
 .btn {
     padding: 10px 30px;
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 13px;
+    border-radius: 2px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    display: inline-block;
+    text-align: center;
 }
 
+/* Botão Preto (OK/CRIAR) */
 .btn-primary {
     background-color: #000;
     color: #fff;
@@ -177,6 +248,7 @@ textarea {
     background-color: #333;
 }
 
+/* Botão Branco (CANCELAR/VOLTAR) */
 .btn-secondary {
     background-color: #fff;
     color: #000;
@@ -185,49 +257,32 @@ textarea {
     background-color: #f0f0f0;
 }
 
-/* ============================================================
-   6. NAVBAR
-   ============================================================ */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #000;
+/* Drag & drop visual */
+.column.drag-over {
+  background: #f7f7f7;
+  border-color: #666;
 }
 
-nav a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    margin-left: 20px;
+.task-card.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
 }
 
-nav h1, nav .navbar-brand {
-    font-size: 1.5rem;
-    margin: 0;
+.task-card .actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
 }
 
-/* ============================================================
-   7. RESPONSIVIDADE
-   ============================================================ */
-@media (max-width: 768px) {
-    .kanban-board {
-        flex-direction: column;
-    }
-    .row {
-        flex-direction: column;
-        gap: 0;
-    }
-    .col {
-        margin-bottom: 15px;
-    }
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-    .btn-group {
-        flex-direction: column;
-    }
+.btn-delete {
+  background: transparent;
+  border: 1px solid #d9534f;
+  color: #d9534f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  background: #fbeaea;
 }

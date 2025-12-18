@@ -1,38 +1,29 @@
-// Este arquivo é responsavel por todas as conexões com o banco de dados
-// Se estiver usando banco de dados local garanta que : 
-//  - O banco (CREATE DATABASE) já tenha sido criado.
-//  - O banco esteja no ar.
-
-require('dotenv').config();
+// db/dbConnect.js
 const mariadb = require('mariadb');
+require('dotenv').config();
 
 const pool = mariadb.createPool({
-  host: process.env.DBHOST,
-  user: process.env.DBUSER,
-  password: process.env.DBPASS,
-  database: process.env.DBNAME,
+  host: process.env.DB_HOST || '127.0.0.1',
+  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_DATABASE || 'dbprojeto1',
   connectionLimit: 5
 });
 
-async function executarQuery(query, params = []) {
-  
-  console.log('=====================================================================');
-  console.log('dbConnect.js','executarQuery()');
-  console.log(arguments);
-
+async function executarQuery(sql, params = []) {
   let conn;
   try {
     conn = await pool.getConnection();
-    const rows = await conn.query(query, params);
-    console.log('=====================================================================');
-    return rows;
+    const res = await conn.query(sql, params);
+    // mariadb returns an object with affectedRows/insertId for inserts; for selects it returns array
+    return res;
   } catch (err) {
-    console.error('Erro ao executar query:', err);
+    console.error('DB error:', err);
     throw err;
   } finally {
     if (conn) conn.release();
   }
 }
 
-module.exports = { executarQuery };
-
+module.exports = { executarQuery, pool };
