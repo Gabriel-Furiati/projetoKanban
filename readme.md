@@ -1,7 +1,6 @@
 # Projeto Base com MariaDB
 
-Este projeto deve ser usado como ponto de partida para criar o projeto que você vai entregar para o professor. 
-
+Este projeto é baseado no em um kanban dinâmico, juntamente concetado ao banco de dados mariaDB
 # Pré-requisitos
 
 1. O ambiente node deve estar instalado. Se ainda não está instalado baixe o ambiente e instale em https://nodejs.org/pt
@@ -11,15 +10,10 @@ Este projeto deve ser usado como ponto de partida para criar o projeto que você
 # Instalação do projeto
 
 
-1. Baixe este projeto usando degit
+1. Baixe este projeto usando git clone
 
-`npx degit josuemrosario/<repositorio> <pasta>`
+git clone https://github.com/Gabriel-Furiati/projetoKanban
 
-
-| TROQUE | POR |
-|----------|----------|
-| `<repositorio>` | nome do repositorio que sera usado como base (este por exemplo)|
-| `<pasta>` | Nome da pasta do seu projeto que será criada automaticamente |
 
 2. Instale todas as dependencias
 
